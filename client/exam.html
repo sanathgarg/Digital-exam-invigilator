@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Exam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="exam-header">
+    <h2>Online Examination</h2>
+    <div class="timer">Time Left: <span id="time">10:00</span></div>
+</div>
+
+<div class="exam-container">
+    <form id="examForm">
+        
+        <div class="question">
+            <p>1. What is HTML?</p>
+            <input type="radio" name="q1" value="a"> Programming Language<br>
+            <input type="radio" name="q1" value="b"> Markup Language<br>
+            <input type="radio" name="q1" value="c"> Database<br>
+        </div>
+
+        <div class="question">
+            <p>2. Which is used for styling?</p>
+            <input type="radio" name="q2" value="a"> HTML<br>
+            <input type="radio" name="q2" value="b"> CSS<br>
+            <input type="radio" name="q2" value="c"> Python<br>
+        </div>
+
+        <button type="button" onclick="submitExam()">Submit</button>
+    </form>
+
+    <div class="warnings">
+        <h3>Suspicious Activity</h3>
+        <p>Tab Switches: <span id="tabCount">0</span></p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

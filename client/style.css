@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.login-container {
+    width: 300px;
+    margin: 150px auto;
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+}
+
+.login-container input {
+    width: 90%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 8px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.exam-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: #007bff;
+    color: white;
+}
+
+.exam-container {
+    padding: 20px;
+}
+
+.question {
+    margin-bottom: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.timer {
+    font-weight: bold;
+}
+
+.warnings {
+    margin-top: 20px;
+    padding: 15px;
+    background: #ffe6e6;
+    border-radius: 8px;
+}
