@@ -1,42 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Exam</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="exam-page">
 
-<div class="exam-header">
-    <h2>Online Examination</h2>
-    <div class="timer">Time Left: <span id="time">10:00</span></div>
-</div>
+    <div class="exam-shell">
+        <header class="exam-header exam-header-modern">
+            <div>
+                <p class="eyebrow">Digital Exam Invigilator</p>
+                <h2 id="examTitleHeading">Online Examination</h2>
+            </div>
+            <div class="timer-card">
+                <span class="timer-label">Time Left</span>
+                <span id="time" class="timer-value">10:00</span>
+            </div>
+        </header>
 
-<div class="exam-container">
-    <form id="examForm">
-        
-        <div class="question">
-            <p>1. What is HTML?</p>
-            <input type="radio" name="q1" value="a"> Programming Language<br>
-            <input type="radio" name="q1" value="b"> Markup Language<br>
-            <input type="radio" name="q1" value="c"> Database<br>
-        </div>
+        <main class="exam-content">
+            <section class="dashboard-card exam-card">
+                <div class="section-heading">
+                    <h2>Exam Questions</h2>
+                    <p>Answer all multiple-choice questions before submitting.</p>
+                </div>
 
-        <div class="question">
-            <p>2. Which is used for styling?</p>
-            <input type="radio" name="q2" value="a"> HTML<br>
-            <input type="radio" name="q2" value="b"> CSS<br>
-            <input type="radio" name="q2" value="c"> Python<br>
-        </div>
+                <form id="examForm" class="question-list"></form>
 
-        <button type="button" onclick="submitExam()">Submit</button>
-    </form>
-
-    <div class="warnings">
-        <h3>Suspicious Activity</h3>
-        <p>Tab Switches: <span id="tabCount">0</span></p>
+                <div class="exam-actions">
+                    <button type="button" onclick="submitExam()">Submit Exam</button>
+                </div>
+            </section>
+        </main>
     </div>
-</div>
 
-<script src="script.js"></script>
+    <div id="tabWarningPopup" class="warning-popup" role="alert" aria-live="assertive">
+        Warning: Tab switching detected
+    </div>
+
+    <script src="exam.js"></script>
+
 </body>
 </html>

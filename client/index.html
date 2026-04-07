@@ -1,19 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Digital Exam Invigilator - Login</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="login-page">
 
-<div class="login-container">
-    <h2>Student Login</h2>
-    <input type="text" id="studentId" placeholder="Enter Student ID">
-    <input type="password" id="password" placeholder="Enter Password">
-    <button onclick="login()">Login</button>
-    <p id="error"></p>
-</div>
+  <main class="login-shell">
+    <!-- Centered login card with cleaner messaging and inputs. -->
+    <section class="login-container">
+      <p class="eyebrow">Digital Exam Invigilator</p>
+      <h2>Sign in</h2>
+      <p class="page-copy">Use your student ID and password to continue.</p>
 
-<script src="script.js"></script>
+      <div id="loginError" class="form-message" aria-live="polite"></div>
+
+      <input id="username" placeholder="Student ID" autocomplete="username">
+      <input id="password" type="password" placeholder="Password" autocomplete="current-password">
+
+      <button type="button" onclick="login()">Login</button>
+    </section>
+  </main>
+
+  <script>
+    // Replace alert-based login errors with an inline message without changing existing login.js.
+    window.alert = function (message) {
+      const errorBox = document.getElementById("loginError");
+      errorBox.textContent = message;
+      errorBox.classList.add("is-visible");
+    };
+
+    document.getElementById("username").addEventListener("input", function () {
+      document.getElementById("loginError").classList.remove("is-visible");
+    });
+
+    document.getElementById("password").addEventListener("input", function () {
+      document.getElementById("loginError").classList.remove("is-visible");
+    });
+  </script>
+  <script src="login.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-page">
+
+  <main class="admin-layout">
+    <aside class="admin-sidebar">
+      <div>
+        <p class="eyebrow">Digital Exam Invigilator</p>
+        <h1 class="sidebar-title">Admin Dashboard</h1>
+        <p class="sidebar-copy">Create exams, monitor activity, and review analytics from one place.</p>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#createExamCard">Create Exam</a>
+        <a href="#analyticsCard">Analytics</a>
+        <a href="#usersCard">Users</a>
+        <a href="#logsCard">Logs</a>
+        <a href="#recordingsCard">Recordings</a>
+      </nav>
+
+      <p id="adminStatus" class="status-pill">Loading dashboard data...</p>
+    </aside>
+
+    <section class="admin-content">
+      <section id="createExamCard" class="dashboard-card">
+        <div class="section-heading">
+          <h2>Create Exam</h2>
+          <p>Build a new exam with multiple-choice questions and publish it for students.</p>
+        </div>
+
+        <form id="createExamForm" class="exam-builder-form">
+          <label class="field-group">
+            <span>Exam title</span>
+            <input id="examTitle" type="text" placeholder="Enter exam title" required>
+          </label>
+
+          <div class="builder-header">
+            <h3>Questions</h3>
+            <button id="addQuestionBtn" type="button" class="secondary-button">Add Question</button>
+          </div>
+
+          <div id="questionBuilderList" class="question-builder-list"></div>
+
+          <div class="form-actions">
+            <button type="submit">Create Exam</button>
+          </div>
+          <p id="createExamMessage" class="inline-message" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section id="analyticsCard" class="dashboard-card">
+        <div class="section-heading">
+          <h2>Analytics</h2>
+          <p>Quick totals and per-student invigilation activity.</p>
+        </div>
+
+        <div id="analyticsSummary" class="stats-grid"></div>
+
+        <div class="analytics-chart-wrap">
+          <canvas id="analyticsChart" width="720" height="260"></canvas>
+        </div>
+
+        <div class="table-wrap">
+          <table class="analytics-table">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Tab Switches</th>
+                <th>Recordings</th>
+              </tr>
+            </thead>
+            <tbody id="analyticsTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="dashboard-grid">
+        <section id="usersCard" class="dashboard-card">
+          <div class="section-heading">
+            <h2>Users</h2>
+            <p>Registered accounts</p>
+          </div>
+          <div id="users" class="stack-list"></div>
+        </section>
+
+        <section id="logsCard" class="dashboard-card">
+          <div class="section-heading">
+            <h2>Logs</h2>
+            <p>Recent invigilation events</p>
+          </div>
+          <div id="logs" class="stack-list"></div>
+        </section>
+      </section>
+
+      <section id="recordingsCard" class="dashboard-card recordings-card">
+        <div class="section-heading">
+          <h2>Recordings</h2>
+          <p>Uploaded exam screen captures</p>
+        </div>
+        <div id="videos" class="video-grid"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>
