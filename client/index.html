@@ -7,40 +7,40 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="login-page">
-
   <main class="login-shell">
-    <!-- Centered login card with cleaner messaging and inputs. -->
-    <section class="login-container">
+    <section class="login-container login-card" id="loginCard">
       <p class="eyebrow">Digital Exam Invigilator</p>
-      <h2>Sign in</h2>
-      <p class="page-copy">Use your student ID and password to continue.</p>
+      <h2>Secure Exam Access</h2>
+      <p class="page-copy">Choose your role, then sign in with your student ID and password.</p>
 
-      <div id="loginError" class="form-message" aria-live="polite"></div>
+      <div class="role-selector" id="roleSelector">
+        <button type="button" class="role-button" data-role="student">Login as Student</button>
+        <button type="button" class="role-button secondary-button" data-role="admin">Login as Admin</button>
+      </div>
 
-      <input id="username" placeholder="Student ID" autocomplete="username">
-      <input id="password" type="password" placeholder="Password" autocomplete="current-password">
+      <section id="loginFormSection" class="login-form-panel" aria-live="polite" hidden>
+        <div class="selected-role-banner">
+          <span id="selectedRoleLabel">Student Login</span>
+          <button type="button" id="changeRoleButton" class="text-button">Change</button>
+        </div>
 
-      <button type="button" onclick="login()">Login</button>
+        <div id="loginError" class="form-message" aria-live="polite"></div>
+
+        <label class="field-group">
+          <span>Student ID</span>
+          <input id="studentId" placeholder="Enter your student ID" autocomplete="username">
+        </label>
+
+        <label class="field-group">
+          <span>Password</span>
+          <input id="password" type="password" placeholder="Enter your password" autocomplete="current-password">
+        </label>
+
+        <button id="loginButton" type="button">Continue</button>
+      </section>
     </section>
   </main>
 
-  <script>
-    // Replace alert-based login errors with an inline message without changing existing login.js.
-    window.alert = function (message) {
-      const errorBox = document.getElementById("loginError");
-      errorBox.textContent = message;
-      errorBox.classList.add("is-visible");
-    };
-
-    document.getElementById("username").addEventListener("input", function () {
-      document.getElementById("loginError").classList.remove("is-visible");
-    });
-
-    document.getElementById("password").addEventListener("input", function () {
-      document.getElementById("loginError").classList.remove("is-visible");
-    });
-  </script>
   <script src="login.js"></script>
-
 </body>
 </html>

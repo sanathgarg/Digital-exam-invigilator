@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Result</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="result-page">
+  <main class="flow-shell">
+    <section class="flow-card result-card">
+      <p class="eyebrow">Digital Exam Invigilator</p>
+      <h1>Exam Submitted</h1>
+      <p class="page-copy">Your responses have been evaluated successfully.</p>
+
+      <div class="result-grid">
+        <article class="stat-card">
+          <p class="stat-label">Score</p>
+          <h3 id="scoreValue">0</h3>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Total Questions</p>
+          <h3 id="totalValue">0</h3>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Percentage</p>
+          <h3 id="percentageValue">0%</h3>
+        </article>
+      </div>
+
+      <div class="result-summary">
+        <p><strong>Student ID:</strong> <span id="studentIdValue">-</span></p>
+        <p><strong>Exam:</strong> <span id="examTitleValue">-</span></p>
+      </div>
+
+      <div class="result-actions">
+        <button id="goHomeButton" type="button" class="secondary-button">Go to Home</button>
+        <button id="logoutButton" type="button">Logout</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="result.js"></script>
+</body>
+</html>

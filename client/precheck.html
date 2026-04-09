@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-Exam Check</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="precheck-page">
+  <main class="flow-shell">
+    <section class="flow-card hero-card">
+      <p class="eyebrow">Digital Exam Invigilator</p>
+      <h1>Pre-Exam Permission Check</h1>
+      <p class="page-copy">Grant screen recording and webcam access before entering the exam room.</p>
+    </section>
+
+    <section class="flow-card permissions-card">
+      <div class="section-heading">
+        <h2>Permission Status</h2>
+        <p>Both permissions must be granted before the exam starts.</p>
+      </div>
+
+      <div class="status-grid">
+        <article class="status-item">
+          <div>
+            <h3>Screen Recording</h3>
+            <p>Required for invigilation recording.</p>
+          </div>
+          <span id="screenStatus" class="status-badge status-pending">Not granted</span>
+        </article>
+
+        <article class="status-item">
+          <div>
+            <h3>Webcam</h3>
+            <p>Required for active candidate monitoring.</p>
+          </div>
+          <span id="cameraStatus" class="status-badge status-pending">Not granted</span>
+        </article>
+      </div>
+
+      <div class="permission-actions">
+        <button id="requestScreenButton" type="button">Allow Screen Recording</button>
+        <button id="requestCameraButton" type="button" class="secondary-button">Allow Webcam</button>
+      </div>
+
+      <p id="precheckMessage" class="inline-message is-info">Grant both permissions to continue.</p>
+
+      <div class="form-actions">
+        <button id="startExamButton" type="button" disabled>Start Exam</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="precheck.js"></script>
+</body>
+</html>

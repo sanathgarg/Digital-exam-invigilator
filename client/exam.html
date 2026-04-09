@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="exam-page">
-
     <div class="exam-shell">
         <header class="exam-header exam-header-modern">
             <div>
                 <p class="eyebrow">Digital Exam Invigilator</p>
                 <h2 id="examTitleHeading">Online Examination</h2>
+                <p class="page-copy exam-copy">Stay on this page until the exam is submitted.</p>
             </div>
             <div class="timer-card">
                 <span class="timer-label">Time Left</span>
@@ -21,6 +21,25 @@
         </header>
 
         <main class="exam-content">
+            <section class="dashboard-card exam-monitor-card">
+                <div class="monitor-header">
+                    <div class="section-heading compact-heading">
+                        <h2>Monitoring Status</h2>
+                        <p>Screen recording and webcam activity are monitored during the exam.</p>
+                    </div>
+                    <span id="cameraHealth" class="status-badge status-pending">Checking webcam</span>
+                </div>
+
+                <div class="monitor-grid">
+                    <div class="monitor-copy">
+                        <p id="monitorMessage" class="inline-message is-info">Webcam verification will begin automatically.</p>
+                    </div>
+                    <div class="webcam-preview-card">
+                        <video id="webcamPreview" autoplay playsinline muted></video>
+                    </div>
+                </div>
+            </section>
+
             <section class="dashboard-card exam-card">
                 <div class="section-heading">
                     <h2>Exam Questions</h2>
@@ -30,7 +49,7 @@
                 <form id="examForm" class="question-list"></form>
 
                 <div class="exam-actions">
-                    <button type="button" onclick="submitExam()">Submit Exam</button>
+                    <button id="submitExamButton" type="button">Submit Exam</button>
                 </div>
             </section>
         </main>
@@ -41,6 +60,5 @@
     </div>
 
     <script src="exam.js"></script>
-
 </body>
 </html>

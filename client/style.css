@@ -49,7 +49,9 @@ a {
 
 .login-page,
 .admin-page,
-.exam-page {
+.exam-page,
+.precheck-page,
+.result-page {
     min-height: 100vh;
 }
 
@@ -68,6 +70,14 @@ a {
     box-shadow: var(--shadow);
     border: 1px solid rgba(217, 226, 242, 0.9);
     text-align: left;
+}
+
+.login-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-2px);
 }
 
 .login-container h2,
@@ -93,6 +103,28 @@ a {
     margin: 10px 0 0;
     color: var(--muted);
     line-height: 1.5;
+}
+
+.flow-shell {
+    width: min(960px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 40px 0;
+    display: grid;
+    gap: 20px;
+}
+
+.flow-card {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    padding: 28px;
+}
+
+.hero-card {
+    background:
+        radial-gradient(circle at top right, rgba(29, 78, 216, 0.14), transparent 35%),
+        rgba(255, 255, 255, 0.96);
 }
 
 .login-container input,
@@ -143,6 +175,13 @@ button:hover {
     background: linear-gradient(135deg, var(--primary-dark) 0%, #1d4ed8 100%);
 }
 
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+    transform: none;
+    box-shadow: none;
+}
+
 .secondary-button {
     width: auto;
     margin-top: 0;
@@ -151,6 +190,22 @@ button:hover {
     color: var(--primary);
     box-shadow: none;
     border: 1px solid #bfdbfe;
+}
+
+.text-button {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    color: var(--primary);
+}
+
+.text-button:hover {
+    background: transparent;
+    box-shadow: none;
+    transform: none;
 }
 
 .secondary-button:hover {
@@ -177,6 +232,48 @@ button:hover {
     border: 1px solid transparent;
 }
 
+.role-selector {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.role-button {
+    margin-top: 0;
+}
+
+.role-button.is-active {
+    outline: 3px solid rgba(29, 78, 216, 0.18);
+}
+
+.login-form-panel {
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.login-form-panel.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.selected-role-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: var(--panel-soft);
+    border: 1px solid var(--border);
+    color: #344054;
+    font-weight: 600;
+}
+
 .form-message {
     background: var(--danger-bg);
     border-color: var(--danger-border);
@@ -188,6 +285,75 @@ button:hover {
 .inline-message.is-success,
 .inline-message.is-error {
     display: block;
+}
+
+.status-grid,
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 18px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: var(--panel-soft);
+}
+
+.status-item h3 {
+    margin: 0 0 6px;
+}
+
+.status-item p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 118px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    font-weight: 700;
+    text-align: center;
+}
+
+.status-pending {
+    background: #eff6ff;
+    color: var(--info-text);
+    border-color: var(--info-border);
+}
+
+.status-success {
+    background: var(--success-bg);
+    color: var(--success-text);
+    border-color: var(--success-border);
+}
+
+.status-danger {
+    background: var(--danger-bg);
+    color: var(--danger-text);
+    border-color: var(--danger-border);
+}
+
+.permission-actions,
+.result-actions {
+    display: flex;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.permission-actions button,
+.result-actions button {
+    margin-top: 0;
 }
 
 .inline-message.is-info {
@@ -291,6 +457,10 @@ button:hover {
 
 .section-heading {
     margin-bottom: 18px;
+}
+
+.compact-heading {
+    margin-bottom: 0;
 }
 
 .section-heading p {
@@ -463,6 +633,10 @@ button:hover {
     padding: 32px 0 40px;
 }
 
+.exam-copy {
+    color: rgba(255, 255, 255, 0.88);
+}
+
 .exam-header {
     display: flex;
     justify-content: space-between;
@@ -504,6 +678,67 @@ button:hover {
 
 .exam-card {
     padding: 28px;
+}
+
+.exam-monitor-card {
+    padding: 24px;
+}
+
+.monitor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.monitor-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 280px;
+    gap: 18px;
+    align-items: stretch;
+}
+
+.monitor-copy .inline-message {
+    display: block;
+    margin-top: 0;
+}
+
+.webcam-preview-card {
+    min-height: 200px;
+    padding: 14px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, #0f172a, #1e293b);
+}
+
+.webcam-preview-card video {
+    width: 100%;
+    height: 100%;
+    min-height: 170px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #020617;
+}
+
+.result-card {
+    text-align: left;
+}
+
+.result-summary {
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 18px;
+    background: var(--panel-soft);
+    border: 1px solid var(--border);
+}
+
+.result-summary p {
+    margin: 0;
+}
+
+.result-summary p + p {
+    margin-top: 10px;
 }
 
 .question-list {
@@ -589,7 +824,10 @@ button:hover {
     .page-hero,
     .dashboard-grid,
     .stats-grid,
-    .option-grid {
+    .option-grid,
+    .status-grid,
+    .result-grid,
+    .monitor-grid {
         grid-template-columns: 1fr;
     }
 
@@ -600,7 +838,8 @@ button:hover {
 
 @media (max-width: 640px) {
     .admin-layout,
-    .exam-shell {
+    .exam-shell,
+    .flow-shell {
         width: min(100% - 20px, 1400px);
         padding-top: 20px;
     }
@@ -608,13 +847,20 @@ button:hover {
     .dashboard-card,
     .login-container,
     .admin-sidebar,
-    .exam-card {
+    .exam-card,
+    .flow-card {
         padding: 20px;
         border-radius: 18px;
     }
 
     .exam-header-modern,
-    .builder-header {
+    .builder-header,
+    .monitor-header,
+    .permission-actions,
+    .result-actions,
+    .role-selector,
+    .selected-role-banner,
+    .status-item {
         flex-direction: column;
         align-items: stretch;
     }

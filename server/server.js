@@ -57,12 +57,12 @@ app.use("/recordings", express.static(recordingsDir));
 
 /* ================== LOGIN ================== */
 app.post("/api/login", async (req, res) => {
-  const { username, password } = req.body;
+  const { studentId, username, password, role } = req.body;
+  const submittedStudentId = String(studentId || username || "").trim();
 
-  console.log("LOGIN INPUT:", username, password);
+  console.log("LOGIN INPUT:", submittedStudentId, role);
 
-  // 🔥 MATCH studentId IN DB
-  const user = await User.findOne({ studentId: username });
+  const user = await User.findOne({ studentId: submittedStudentId });
 
   console.log("DB RESULT:", user);
 
@@ -70,11 +70,17 @@ app.post("/api/login", async (req, res) => {
     return res.status(401).json({ message: "Invalid credentials" });
   }
 
+  if (role && user.role !== role) {
+    return res.status(401).json({ message: `This account is not registered as ${role}.` });
+  }
+
   res.json({
     role: user.role || "student",
-    userId: user._id
+    userId: user._id,
+    studentId: user.studentId
   });
 });
+
 /* ================== SAVE LOG ================== */
 app.post("/api/log", async (req, res) => {
   const { userId, event } = req.body;
@@ -136,10 +142,56 @@ app.get("/api/exam/latest", async (req, res) => {
       return res.status(404).json({ message: "No exam available" });
     }
 
-    res.json(latestExam);
+    res.json({
+      _id: latestExam._id,
+      title: latestExam.title,
+      createdAt: latestExam.createdAt,
+      questions: Array.isArray(latestExam.questions)
+        ? latestExam.questions.map(questionItem => ({
+            question: questionItem.question,
+            options: questionItem.options
+          }))
+        : []
+    });
   } catch (error) {
     console.error("LATEST EXAM ERROR:", error);
     res.status(500).json({ message: "Failed to load exam" });
+  }
+});
+
+/* ================== SUBMIT EXAM ================== */
+app.post("/api/exam/submit", async (req, res) => {
+  try {
+    const { answers, userId } = req.body;
+    const latestExam = await Exam.findOne().sort({ createdAt: -1 });
+
+    if (!latestExam || !Array.isArray(latestExam.questions) || !latestExam.questions.length) {
+      return res.status(404).json({ message: "No exam available for evaluation" });
+    }
+
+    const normalizedAnswers = answers && typeof answers === "object" ? answers : {};
+    let score = 0;
+
+    latestExam.questions.forEach((questionItem, index) => {
+      const submittedAnswer = String(normalizedAnswers[String(index)] || "").trim();
+      const correctAnswer = String(questionItem.correctAnswer || "").trim();
+
+      if (submittedAnswer && submittedAnswer === correctAnswer) {
+        score += 1;
+      }
+    });
+
+    const total = latestExam.questions.length;
+    const percentage = total ? Number(((score / total) * 100).toFixed(2)) : 0;
+
+    if (userId) {
+      await Log.create({ userId, event: "exam-submitted" });
+    }
+
+    res.json({ score, total, percentage });
+  } catch (error) {
+    console.error("SUBMIT EXAM ERROR:", error);
+    res.status(500).json({ message: "Failed to evaluate exam" });
   }
 });
 
