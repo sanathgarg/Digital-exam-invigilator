@@ -30,13 +30,8 @@
                     <span id="cameraHealth" class="status-badge status-pending">Checking webcam</span>
                 </div>
 
-                <div class="monitor-grid">
-                    <div class="monitor-copy">
-                        <p id="monitorMessage" class="inline-message is-info">Webcam verification will begin automatically.</p>
-                    </div>
-                    <div class="webcam-preview-card">
-                        <video id="webcamPreview" autoplay playsinline muted></video>
-                    </div>
+                <div class="monitor-copy">
+                    <p id="monitorMessage" class="inline-message is-info">Webcam verification will begin automatically.</p>
                 </div>
             </section>
 
@@ -58,6 +53,16 @@
     <div id="tabWarningPopup" class="warning-popup" role="alert" aria-live="assertive">
         Warning: Tab switching detected
     </div>
+
+    <aside class="floating-webcam-popup" aria-label="Webcam preview">
+        <div class="floating-webcam-header">
+            <span>Live Camera</span>
+            <span id="cameraHealthMini" class="status-dot status-pending"></span>
+        </div>
+        <div class="webcam-preview-card webcam-preview-floating">
+            <video id="webcamPreview" autoplay playsinline muted></video>
+        </div>
+    </aside>
 
     <script src="exam.js"></script>
 </body>

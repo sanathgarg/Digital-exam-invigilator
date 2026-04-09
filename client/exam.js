@@ -15,6 +15,7 @@ let cameraIssueLogged = false;
 
 const webcamPreview = document.getElementById("webcamPreview");
 const cameraHealth = document.getElementById("cameraHealth");
+const cameraHealthMini = document.getElementById("cameraHealthMini");
 const monitorMessage = document.getElementById("monitorMessage");
 const submitExamButton = document.getElementById("submitExamButton");
 
@@ -31,6 +32,7 @@ function setMonitorState(message, type, badgeText) {
     monitorMessage.className = `inline-message is-${type}`;
     cameraHealth.textContent = badgeText;
     cameraHealth.className = `status-badge ${type === "success" ? "status-success" : type === "error" ? "status-danger" : "status-pending"}`;
+    cameraHealthMini.className = `status-dot ${type === "success" ? "status-success" : type === "error" ? "status-danger" : "status-pending"}`;
 }
 
 function startTimer() {

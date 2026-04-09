@@ -400,6 +400,14 @@ button:disabled {
     margin: 28px 0;
 }
 
+.sidebar-actions {
+    margin-top: 18px;
+}
+
+.sidebar-button {
+    width: 100%;
+}
+
 .sidebar-nav a {
     padding: 12px 14px;
     border-radius: 14px;
@@ -692,13 +700,6 @@ button:disabled {
     margin-bottom: 18px;
 }
 
-.monitor-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 280px;
-    gap: 18px;
-    align-items: stretch;
-}
-
 .monitor-copy .inline-message {
     display: block;
     margin-top: 0;
@@ -719,6 +720,49 @@ button:disabled {
     object-fit: cover;
     border-radius: 12px;
     background: #020617;
+}
+
+.floating-webcam-popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+    width: min(240px, calc(100vw - 24px));
+    padding: 12px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(217, 226, 242, 0.95);
+    box-shadow: 0 20px 36px rgba(15, 23, 42, 0.18);
+    backdrop-filter: blur(10px);
+}
+
+.floating-webcam-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: #344054;
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.webcam-preview-floating {
+    min-height: auto;
+    padding: 8px;
+}
+
+.webcam-preview-floating video {
+    min-height: 140px;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
+    padding: 0;
+    border-radius: 999px;
+    border: 1px solid transparent;
 }
 
 .result-card {
@@ -783,6 +827,7 @@ button:disabled {
     position: fixed;
     top: 24px;
     right: 24px;
+    z-index: 40;
     padding: 14px 18px;
     border-radius: 14px;
     background: rgba(185, 28, 28, 0.95);
@@ -826,8 +871,7 @@ button:disabled {
     .stats-grid,
     .option-grid,
     .status-grid,
-    .result-grid,
-    .monitor-grid {
+    .result-grid {
         grid-template-columns: 1fr;
     }
 
@@ -875,5 +919,13 @@ button:disabled {
         right: 12px;
         left: 12px;
         bottom: 16px;
+    }
+
+    .floating-webcam-popup {
+        top: auto;
+        right: 12px;
+        left: 12px;
+        bottom: 86px;
+        width: auto;
     }
 }

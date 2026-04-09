@@ -202,6 +202,15 @@ function updateCreateExamMessage(message, type) {
   messageElement.className = `inline-message ${type ? `is-${type}` : ""}`.trim();
 }
 
+function logoutAdmin() {
+  localStorage.removeItem("userId");
+  localStorage.removeItem("studentId");
+  localStorage.removeItem("selectedRole");
+  localStorage.removeItem("precheckCompleted");
+  localStorage.removeItem("latestExamResult");
+  window.location.href = "/";
+}
+
 function buildQuestionCard(questionIndex, questionData) {
   return `
     <article class="question-builder-card" data-question-index="${questionIndex}">
@@ -406,3 +415,4 @@ async function loadDashboard() {
 addQuestionCard();
 attachBuilderEvents();
 loadDashboard();
+document.getElementById("adminLogoutButton").addEventListener("click", logoutAdmin);
